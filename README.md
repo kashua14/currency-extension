@@ -61,7 +61,6 @@ A Chrome extension that converts prices in different currencies to your nation's
 
 ## Project Structure
 
-```md
 currency-converter/
 ├── css/
 │   └── select2.min.css
@@ -73,7 +72,6 @@ currency-converter/
 ├── popup.js
 ├── styles.css
 └── README.md
-```
 
 ## License
 
