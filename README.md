@@ -60,14 +60,15 @@ A Chrome extension that converts prices in different currencies to your nation's
 ```md
 currency-converter/
 ├── css/
-│   └── select2.min.css
+│   ├── select2.min.css
+│   └── styles.css
 ├── js/
+│   ├── jquery.min.js
 │   └── select2.min.js
 ├── config.json
 ├── manifest.json
 ├── popup.html
 ├── popup.js
-├── styles.css
 └── README.md
 ```
 
@@ -77,4 +78,4 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-For any questions or suggestions, feel free to contact [Joshua Kasasira] at [joshkasasira@example.com].
+For any questions or suggestions, feel free to contact Joshua Kasasira at [joshkasasira@example.com].
