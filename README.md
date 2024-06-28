@@ -78,4 +78,4 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-For any questions or suggestions, feel free to contact Joshua Kasasira at [joshkasasira@example.com].
+For any questions or suggestions, feel free to contact Joshua Kasasira at [joshkasasira@gmail.com].
