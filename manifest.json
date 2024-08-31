@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Currency Converter Pro - Fast & Accurate Exchange Rates",
   "version": "1.0",
-  "description": "Instantly convert prices and currencies with Currency Converter Pro! Get accurate exchange rates, fast conversions, and a seamless browsing experience. Perfect for online shopping, travel, and financial tracking. Never miss a great deal again - convert prices from over 150 currencies directly in your browser with just one click.",
+  "description": "Convert prices and currencies instantly with Currency Converter Pro. Fast, accurate exchange rates for over 150 currencies.",
   "permissions": ["activeTab", "storage"],
   "action": {
     "default_popup": "popup.html",
