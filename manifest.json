@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Currency Converter Pro",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Convert prices and currencies instantly with Currency Converter Pro. Fast, accurate exchange rates for over 150 currencies.",
   "permissions": ["activeTab", "storage"],
   "action": {
