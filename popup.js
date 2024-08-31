@@ -2,13 +2,15 @@ document.addEventListener("DOMContentLoaded", async function () {
   const amountInput = document.getElementById("amount");
   const currencyInput = $("#currency");
   const convertButton = document.getElementById("convert-button");
+  const resultDiv = document.getElementById("result");
+  const loadingIndicator = document.getElementById("loading-indicator");
   let apiKey;
 
   // Load the API key from the config file
   await fetch("config.json")
     .then((response) => response.json())
     .then((config) => {
-      apiKey =config.API_KEY;
+      apiKey = config.API_KEY;
     })
     .catch((error) => {
       console.error("Error loading config file:", error);
@@ -22,23 +24,31 @@ document.addEventListener("DOMContentLoaded", async function () {
     .addEventListener("submit", async function (event) {
       event.preventDefault();
 
-      const amount = amountInput.value;
+      const amount = parseFloat(amountInput.value);
       const currency = currencyInput.val();
-      const resultDiv = document.getElementById("result");
 
       if (!amount || !currency) {
         resultDiv.textContent = "Please enter a valid amount and currency.";
         return;
       }
 
+      showLoadingIndicator();
+
       const userCurrency = await getUserCurrency();
-      const convertedAmount = await convertCurrency(
+      const conversionResult = await convertCurrency(
         amount,
         currency,
         userCurrency
       );
-      if (convertedAmount) {
-        resultDiv.textContent = `Converted Amount: ${convertedAmount}`;
+
+      hideLoadingIndicator();
+
+      if (conversionResult) {
+        const { convertedAmount, lastUpdated, source } = conversionResult;
+        resultDiv.innerHTML = `
+              Converted Amount: <strong>${formatCurrency(convertedAmount, userCurrency)}</strong>
+              <br/><br/><small>Exchange rate from <a href=${source}>exchangerate-api</a> updated at <strong>${lastUpdated}</strong></small>
+          `;
       } else {
         resultDiv.textContent = "Error converting currency. Please try again.";
       }
@@ -60,7 +70,16 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     if (data && data.rates && data.rates[toCurrency]) {
       const convertedValue = (amount * data.rates[toCurrency]).toFixed(2);
-      return formatCurrency(convertedValue, toCurrency);
+      const lastUpdated = new Date(
+        data.time_last_updated * 1000
+      ).toLocaleString();
+      const source = data.provider || "Exchange Rate API";
+
+      return {
+        convertedAmount: convertedValue,
+        lastUpdated: lastUpdated,
+        source: source,
+      };
     }
 
     return null;
@@ -73,11 +92,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     }).format(amount);
   }
 
-  async function updateButtonText()  {
-    const amount = amountInput.value || "";
+  async function updateButtonText() {
+    const amount = amountInput.value || "Amount";
     const currency = currencyInput.val() || "Currency";
     const userCurrency = await getUserCurrency();
-    convertButton.textContent = `Convert ${currency} ${amount} to ${userCurrency}`;
+    convertButton.textContent = `Convert ${amount} ${currency} to ${userCurrency}`;
   }
 
   async function fetchCurrencies() {
@@ -107,8 +126,18 @@ document.addEventListener("DOMContentLoaded", async function () {
       allowClear: true,
       dropdownParent: $(".container"),
     });
-
+    // Set default value to USD
     currencyInput.val("USD").trigger("change");
+  }
+
+  function showLoadingIndicator() {
+    loadingIndicator.style.display = "block";
+    resultDiv.style.display = "none";
+  }
+
+  function hideLoadingIndicator() {
+    loadingIndicator.style.display = "none";
+    resultDiv.style.display = "block";
   }
 
   const currencies = await fetchCurrencies();
