@@ -13,7 +13,7 @@ body {
 .container {
   background-color: white;
   /* border-radius: 12px; */
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   padding: 20px;
   width: 240px;
   text-align: center;
@@ -55,7 +55,8 @@ label {
   color: #666;
 }
 
-input, select {
+input,
+select {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -65,7 +66,8 @@ input, select {
   /* width: 100%; */
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
   border-color: #007bff;
 }
 
@@ -86,6 +88,8 @@ button:hover {
 }
 
 #result {
+  margin-left: -12px;
+  margin-right: -12px;
   margin-top: 20px;
   font-size: 1.2em;
   color: #333;
@@ -93,4 +97,12 @@ button:hover {
 
 .select2-dropdown {
   z-index: 9999;
+}
+
+#loading-indicator {
+  display: none;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #007bff;
+  text-align: center;
 }
