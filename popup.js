@@ -1,23 +1,18 @@
-const apiKey = process.env.CURRENCY_API_KEY;
-
 document.addEventListener("DOMContentLoaded", async function () {
   const amountInput = document.getElementById("amount");
   const currencyInput = $("#currency");
   const convertButton = document.getElementById("convert-button");
-
-  console.log("api-key: ", apiKey);
-  
-  // let apiKey;
+  let apiKey;
 
   // Load the API key from the config file
-  // await fetch("config.json")
-  //   .then((response) => response.json())
-  //   .then((config) => {
-  //     apiKey =config.API_KEY;
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error loading config file:", error);
-  //   });
+  await fetch("config.json")
+    .then((response) => response.json())
+    .then((config) => {
+      apiKey =config.API_KEY;
+    })
+    .catch((error) => {
+      console.error("Error loading config file:", error);
+    });
 
   amountInput.addEventListener("input", updateButtonText);
   currencyInput.on("change", updateButtonText);
