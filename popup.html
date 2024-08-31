@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Currency Converter</title>
+  <title>Currency Converter Pro </title>
   <link href="css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
   <div class="container">
-    <h1>Currency Converter</h1>
+    <h1>Currency Converter Pro</h1>
     <form id="currency-form">
       <div class="input-group-row">
         <div class="input-group amount-group">
@@ -25,6 +25,7 @@
       </div>
       <button type="submit" id="convert-button">Convert</button>
     </form>
+    <div id="loading-indicator" style="display: none;">Converting...</div>
     <div id="result"></div>
   </div>
   <script src="js/jquery.min.js"></script>
